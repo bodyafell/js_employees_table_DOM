@@ -152,8 +152,6 @@ form.addEventListener('submit', (e) => {
     );
     form.reset();
   }
-
-
 });
 
 function addEmployeeToTable(employee) {
@@ -183,19 +181,9 @@ function checkValidation(employee) {
     return false;
   }
 
-  if (employee.position.length < 4) {
-    pushNotification(
-      20,
-      20,
-      'Validation Error',
-      'Position must be at least 4 characters long',
-      'error',
-    );
+const age = Number(employee.age);
 
-    return false;
-  }
-
-  if (employee.age < 18 || employee.age > 90) {
+  if (age < 18 || age > 90) {
     pushNotification(
       20,
       20,
