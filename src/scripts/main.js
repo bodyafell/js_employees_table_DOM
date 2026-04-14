@@ -29,10 +29,10 @@ table.addEventListener('click', (e) => {
   rows.sort((a, b) => {
     if (/\d/.test(a.cells[columnIndex].textContent)) {
       const aNum = parseFloat(
-        a.cells[columnIndex].textContent.replace('$', ''),
+        a.cells[columnIndex].textContent.replace(/[^\d.-]/g, ''),
       );
       const bNum = parseFloat(
-        b.cells[columnIndex].textContent.replace('$', ''),
+        b.cells[columnIndex].textContent.replace(/[^\d.-]/g, ''),
       );
 
       if (sortDirection === 'asc') {
@@ -150,9 +150,10 @@ form.addEventListener('submit', (e) => {
       'Employee added successfully',
       'success',
     );
+    form.reset();
   }
 
-  form.reset();
+
 });
 
 function addEmployeeToTable(employee) {
@@ -231,7 +232,7 @@ const pushNotification = (posTop, posRight, title, description, type) => {
   document.body.appendChild(notification);
 
   setTimeout(() => {
-    notification.style.display = 'none';
+    notification.remove();
   }, 2000);
 };
 
